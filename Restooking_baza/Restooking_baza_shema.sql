@@ -7,11 +7,11 @@ CREATE TABLE Admin
 	Ime                  VARCHAR(50) NULL,
 	Prezime              VARCHAR(50) NULL,
 	Email                VARCHAR(50) NULL,
-	KodAdmina            INTEGER NULL
+	KodAdmina            INTEGER NULL,
+   PRIMARY KEY (IDAdmin)  
 );
 
-ALTER TABLE Admin
-ADD PRIMARY KEY (IDAdmin);
+
 
 CREATE TABLE Konobar
 (
@@ -21,11 +21,11 @@ CREATE TABLE Konobar
 	Ime                  VARCHAR(50) NULL,
 	Prezime              VARCHAR(50) NULL,
 	Email                VARCHAR(50) NULL,
-	IDRestoranFK         INTEGER NOT NULL
+	IDRestoranFK         INTEGER NOT NULL,
+    PRIMARY KEY (IDKonobar)  
 );
 
-ALTER TABLE Konobar
-ADD PRIMARY KEY (IDKonobar);
+
 
 CREATE TABLE Korisnik
 (
@@ -34,49 +34,46 @@ CREATE TABLE Korisnik
 	Lozinka              VARCHAR(50) NULL,
 	Ime                  VARCHAR(50) NULL,
 	Prezime              VARCHAR(50) NULL,
-	Email                VARCHAR(50) NULL
+	Email                VARCHAR(50) NULL,
+    PRIMARY KEY (IDKorisnik)  
 );
 
-ALTER TABLE Korisnik
-ADD PRIMARY KEY (IDKorisnik);
 
 CREATE TABLE NalaziSe
 (
 	IDOpstinaFK          INTEGER NOT NULL ,
 	IDRestoranFK         INTEGER NOT NULL,
-	IDNalaziSe           INTEGER NOT NULL AUTO_INCREMENT
+	IDNalaziSe           INTEGER NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (IDNalaziSe)  
 );
 
-ALTER TABLE NalaziSe
-ADD PRIMARY KEY (IDNalaziSe);
 
 CREATE TABLE Nudi
 (
 	IDOpcijaFK           INTEGER NOT NULL,
 	IDRestoranFK         INTEGER NOT NULL,
-	IDNudi               INTEGER NOT NULL AUTO_INCREMENT
+	IDNudi               INTEGER NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (IDNudi)  
 );
 
-ALTER TABLE Nudi
-ADD PRIMARY KEY (IDNudi);
+
 
 CREATE TABLE Opcija
 (
 	IDOpcija             INTEGER NOT NULL AUTO_INCREMENT,
-	ImeOpcije            VARCHAR(50) NULL
+	ImeOpcije            VARCHAR(50) NULL,
+    PRIMARY KEY (IDOpcija)  
 );
 
-ALTER TABLE Opcija
-ADD PRIMARY KEY (IDOpcija);
+
 
 CREATE TABLE Opstina
 (
 	IDOpstina            INTEGER NOT NULL AUTO_INCREMENT,
-	Naziv                VARCHAR(50) NULL
+	Naziv                VARCHAR(50) NULL,
+    PRIMARY KEY (IDOpstina)  
 );
 
-ALTER TABLE Opstina
-ADD PRIMARY KEY (IDOpstina);
 
 CREATE TABLE Restoran
 (
@@ -91,11 +88,11 @@ CREATE TABLE Restoran
 	KodKonobara          INTEGER NULL,
 	Cena                 CHAR NULL,
 	Slike                VARCHAR(50) NULL,
-	BrojPosetilaca       INTEGER NULL
+	BrojPosetilaca       INTEGER NULL,
+    PRIMARY KEY (IDRestoran)  
 );
 
-ALTER TABLE Restoran
-ADD PRIMARY KEY (IDRestoran);
+
 
 CREATE TABLE Rezervacija
 (
@@ -105,21 +102,19 @@ CREATE TABLE Rezervacija
 	Status               VARCHAR(50) NULL,
 	Ocena                INTEGER NULL,
 	VremeOd              TIMESTAMP NULL,
-	VremeDo              TIMESTAMP NULL
+	VremeDo              TIMESTAMP NULL,
+    PRIMARY KEY (IDRezervacija)  
 );
 
-ALTER TABLE Rezervacija
-ADD PRIMARY KEY (IDRezervacija);
 
 CREATE TABLE Sto
 (
 	IDSto                INTEGER NOT NULL AUTO_INCREMENT,
 	IDRestoranFK         INTEGER NOT NULL,
-	BrojOsoba            INTEGER NULL
+	BrojOsoba            INTEGER NULL,
+    PRIMARY KEY (IDSto)  
 );
 
-ALTER TABLE Sto
-ADD PRIMARY KEY (IDSto);
 
 ALTER TABLE Konobar
 ADD CONSTRAINT R_6 FOREIGN KEY (IDRestoranFK) REFERENCES Restoran (IDRestoran);
@@ -127,7 +122,7 @@ ADD CONSTRAINT R_6 FOREIGN KEY (IDRestoranFK) REFERENCES Restoran (IDRestoran);
 ALTER TABLE NalaziSe
 ADD CONSTRAINT R_14 FOREIGN KEY (IDOpstinaFK) REFERENCES Opstina (IDOpstina);
 
-ALTER TABLE NalaziSe
+ALTER TABLE NalaziSenalazise
 ADD CONSTRAINT R_15 FOREIGN KEY (IDRestoranFK) REFERENCES Restoran (IDRestoran);
 
 ALTER TABLE Nudi
