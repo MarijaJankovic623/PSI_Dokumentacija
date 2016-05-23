@@ -1,0 +1,29 @@
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `slobodni_stolovi`(idRes INT, brLjudi INT,vremeOd TIMESTAMP, vremeDo TIMESTAMP )
+BEGIN
+
+SELECT * 
+FROM sto ss
+WHERE ss.IDRestoranFK = idRes
+AND ss.BrojOsoba = brLjudi
+AND  ss.IDSto NOT IN
+(
+		SELECT  IDStoFK
+		FROM rezervacija r
+		WHERE 
+		(
+			(vremeOd <= r.VremeDo AND vremeOd >= r.VremeOd )
+			OR (vremeDo <= r.VremeDo AND vremeDo >= r.VremeOd)
+			OR (vremeOd <= r.VremeOd AND vremeDo >= r.VremeDo)
+		)
+		AND  r.IDStoFK IN
+			(
+				SELECT s.IDSto 
+				FROM sto s
+				WHERE s.IDRestoranFK = idRes 
+				AND s.BrojOsoba = brLjudi
+			)
+);
+
+END$$
+DELIMITER ;
