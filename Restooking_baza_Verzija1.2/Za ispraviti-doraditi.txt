@@ -1,3 +1,10 @@
 neka ispisivanja greske o tome da kod nije valjan
 
 provere za unos datuma 
+
+
+default 0 na ocenu 
+status rezervacije 
+Nadolazeca
+Otkazana
+Ostvarena
