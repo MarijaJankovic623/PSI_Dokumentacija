@@ -1,0 +1,83 @@
+DELIMITER $$
+CREATE  PROCEDURE `sve_rezervacije`(idK INT)
+BEGIN
+
+SELECT R.ImeObjekta, R.Opis, Z.Ocena, Z.VremeOd, Z.VremeDo,Z.Status, Z.IDRezervacija
+FROM sto S, restoran R, rezervacija Z
+WHERE Z.IDKorisnikFK = idK
+AND  Z.IDStoFK = S.IDSto
+AND S.IDRestoranFK = R.IDRestoran
+;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE  PROCEDURE `slobodni_stolovi`(idRes INT, brLjudi INT,vremeOd TIMESTAMP, vremeDo TIMESTAMP )
+BEGIN
+
+SELECT * 
+FROM sto ss
+WHERE ss.IDRestoranFK = idRes
+AND ss.BrojOsoba = brLjudi
+AND  ss.IDSto NOT IN
+(
+		SELECT  IDStoFK
+		FROM rezervacija r
+		WHERE 
+        r.Status='Nadolazeca'
+        AND
+		(
+			(vremeOd <= r.VremeDo AND vremeOd >= r.VremeOd )
+			OR (vremeDo <= r.VremeDo AND vremeDo >= r.VremeOd)
+			OR (vremeOd <= r.VremeOd AND vremeDo >= r.VremeDo)
+		)
+		AND  r.IDStoFK IN
+			(
+				SELECT s.IDSto 
+				FROM sto s
+				WHERE s.IDRestoranFK = idRes 
+				AND s.BrojOsoba = brLjudi
+			)
+);
+
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE  PROCEDURE `slobodni_stolovi_restorani`(opstina VARCHAR(30) , brLjudi INT,vremeOd TIMESTAMP, vremeDo TIMESTAMP )
+BEGIN
+SELECT *
+FROM restoran res
+WHERE Opstina = opstina
+AND EXISTS
+(
+SELECT * 
+FROM sto ss
+WHERE ss.IDRestoranFK = res.IDRestoran
+AND ss.BrojOsoba = brLjudi
+AND  ss.IDSto NOT IN
+(
+		SELECT  IDStoFK
+		FROM rezervacija r
+		WHERE
+        r.Status='Nadolazeca'
+        AND
+		(
+			(vremeOd <= r.VremeDo AND vremeOd >= r.VremeOd )
+			OR (vremeDo <= r.VremeDo AND vremeDo >= r.VremeOd)
+			OR (vremeOd <= r.VremeOd AND vremeDo >= r.VremeDo)
+		)
+		AND  r.IDStoFK IN
+			(
+				SELECT s.IDSto 
+				FROM sto s
+				WHERE s.IDRestoranFK = res.IDRestoran
+				AND s.BrojOsoba = brLjudi
+			)
+)
+);
+
+END$$
+DELIMITER ;
