@@ -19,7 +19,7 @@ CREATE TABLE `korisnik` (
   `Prezime` varchar(50) DEFAULT NULL,
   `Email` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`IDKorisnik`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE `restoran` (
@@ -38,7 +38,7 @@ CREATE TABLE `restoran` (
   `KodKonobara` int(11) DEFAULT NULL,
   `BrojPosetilaca` int(11) DEFAULT '0',
   PRIMARY KEY (`IDRestoran`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE `konobar` (
@@ -63,7 +63,7 @@ CREATE TABLE `sto` (
   PRIMARY KEY (`IDSto`),
   KEY `R_7` (`IDRestoranFK`),
   CONSTRAINT `R_7` FOREIGN KEY (`IDRestoranFK`) REFERENCES `restoran` (`IDRestoran`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
 
 CREATE TABLE `rezervacija` (
@@ -79,5 +79,5 @@ CREATE TABLE `rezervacija` (
   KEY `R_9` (`IDKorisnikFK`),
   CONSTRAINT `R_8` FOREIGN KEY (`IDStoFK`) REFERENCES `sto` (`IDSto`),
   CONSTRAINT `R_9` FOREIGN KEY (`IDKorisnikFK`) REFERENCES `korisnik` (`IDKorisnik`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 

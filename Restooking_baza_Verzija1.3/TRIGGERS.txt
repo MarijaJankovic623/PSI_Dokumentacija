@@ -3,7 +3,7 @@ CREATE TRIGGER ocene
     AFTER UPDATE ON rezervacija
     FOR EACH ROW 
 BEGIN
-IF STRCMP(NEW.Status,'Ostvarena') = 0
+IF NEW.Status ='Ocenjena'
 THEN
 BEGIN
 DECLARE IDR int;
