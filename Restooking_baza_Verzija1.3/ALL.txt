@@ -84,22 +84,42 @@ CREATE TABLE `rezervacija` (
 
 
 DELIMITER $$
-CREATE TRIGGER ocene
-    AFTER UPDATE ON rezervacija
-    FOR EACH ROW 
+CREATE  PROCEDURE `ocena_restorana`(idRez INT)
 BEGIN
-IF NEW.Status ='Ocenjena'
-THEN
-BEGIN
+
 DECLARE IDR int;
 DECLARE  BP int;
 DECLARE  O float;
+DECLARE S varchar(100);
+DECLARE ORez int;
+DECLARE IDStoFK int;
 
+SET S := (
+SELECT R.Status
+FROM rezervacija R
+WHERE R.IDRezervacija = idRez);
+
+SET ORez := (
+SELECT R.Ocena
+FROM rezervacija R
+WHERE R.IDRezervacija = idRez);
+
+SET IDStoFK := (
+SELECT R.IDStoFK
+FROM rezervacija R
+WHERE R.IDRezervacija = idRez);
+
+
+
+
+IF S ='Ocenjena'
+THEN
+BEGIN
 
 SET IDR := (
 SELECT S.IDRestoranFK
 FROM sto S
-WHERE S.IDSto = NEW.IDStoFK);
+WHERE S.IDSto = IDStoFK);
 
 
 
@@ -115,13 +135,14 @@ FROM restoran R
 WHERE R.IDRestoran = IDR);
 
 
-SET O = O + NEW.Ocena;
+SET O = O + ORez;
 
 SET BP = BP + 1;
 
 SET O = O / BP;
 
 UPDATE restoran SET BrojPosetilaca = BP, Ocena = O WHERE IDRestoran = IDR;
+
 END;
 END IF;
 END$$
