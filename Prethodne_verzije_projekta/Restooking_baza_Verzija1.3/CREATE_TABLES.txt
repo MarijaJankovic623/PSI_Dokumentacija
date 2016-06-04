@@ -1,13 +1,15 @@
 CREATE TABLE `admin` (
   `IDAdmin` int(11) NOT NULL AUTO_INCREMENT,
-  `KIme` varchar(50) DEFAULT NULL,
-  `Lozinka` varchar(50) DEFAULT NULL,
-  `Ime` varchar(50) DEFAULT NULL,
-  `Prezime` varchar(50) DEFAULT NULL,
-  `Email` varchar(50) DEFAULT NULL,
+  `KIme` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `Lozinka` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `Ime` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `Prezime` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
+  `Email` varchar(50) CHARACTER SET utf8 DEFAULT NULL,
   `KodAdmina` int(11) DEFAULT NULL,
-  PRIMARY KEY (`IDAdmin`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`IDAdmin`),
+  UNIQUE KEY `KodAdmina_UNIQUE` (`KodAdmina`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
 
 
 
@@ -36,8 +38,10 @@ CREATE TABLE `restoran` (
   `Ocena` float DEFAULT '0',
   `KodKonobara` int(11) DEFAULT NULL,
   `BrojPosetilaca` int(11) DEFAULT '0',
-  PRIMARY KEY (`IDRestoran`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`IDRestoran`),
+  UNIQUE KEY `KodKonobara_UNIQUE` (`KodKonobara`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
 
 
 CREATE TABLE `konobar` (
