@@ -1,0 +1,41 @@
+Testiranje
+//selenijum 
+//Marija Jankovic
+
+1. Test GUI
+
+//Testiram SSU "Prelistavanje restorana" koji pripada Marku Katratovicu, implementirao ga je isto on. 
+//Test 1 ce se odnositi na "Prelistavanje restorana" kada je korisnik tipa gost
+
+Cilj testa je da: 
+
+
+1. pri unosu kriterijuma izlistava restorane (neophodno je da u ovom testu budu uneti validni kriterijumi, odnosno oni koji ce dati rezultat)
+2. Pokusava se rezervacija od strane gosta te je neophodno da bude odveden na stranicu za logovanje
+
+
+
+2. Test GUI
+
+//Testiram SSU "Prelistavanje restorana" koji pripada Marku Katratovicu, implementirao ga je isto on. 
+//Test 1 ce se odnositi na "Prelistavanje restorana" kada je korisnik tipa ulogovani korisnik
+
+PREDUSLOV TESTA DA KORISNIK BUDE ULOGOVAN
+
+Cilj testa je da: 
+
+1. pri unosu kriterijuma izlistava restorane (neophodno je da u ovom testu budu uneti validni kriterijumi, odnosno oni koji ce dati rezultat)
+2. Pokusava se rezervacija od strane korisnika te je neophodno da se odvede na stranu za rezervisanje
+3. korisnik unosi validne podatke i dopusta mu se rezervacija ukoliko u bazi ima slobodnih stolova
+
+
+3. Test GUI
+
+//Testiram SSU "Prelistavanje restorana" koji pripada Marku Katratovicu, implementirao ga je isto on. 
+//Test 1 ce se odnositi na "Prelistavanje restorana" kada je korisnik tipa ulogovani korisnik
+
+Cilj testa je da: 
+
+1. pri unosu kriterijuma izlistava restorane (neophodno je da u ovom testu budu uneti validni kriterijumi, odnosno oni koji ce dati rezultat)
+2. Pokusava se rezervacija od strane korisnika te je neophodno da se odvede na stranu za rezervisanje
+3. korisnik unosi nevalidne podatke i ispisuje mu se greska o neuspesnosti rezervacije
