@@ -223,7 +223,7 @@ CREATE  PROCEDURE `slobodni_stolovi_restorani`(opstina VARCHAR(30) , brLjudi INT
 BEGIN
 SELECT *
 FROM restoran res
-WHERE Opstina = opstina
+WHERE res.Opstina = opstina
 AND EXISTS
 (
 SELECT * 
