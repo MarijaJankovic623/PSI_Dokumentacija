@@ -1,0 +1,7 @@
+Test1- predulov da u bazi postoji korisnik i da je on ulogovan
+i da ima jednu nadolazecu rezervaciju (01-07)
+
+Test2 - predulov da u bazi postoji korisnik i da je on ulogovan
+i da ima jednu ostvarenu neocenjenu rezervaciju
+
+Test3- registracija Restorana, preduslov da ne postoji takav restoran u bazi.
